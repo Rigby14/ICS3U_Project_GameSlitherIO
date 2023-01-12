@@ -1,3 +1,4 @@
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -46,11 +47,10 @@ public class Board extends JPanel implements ActionListener {
     }
     
     private void initBoard() {
-        
+
         addKeyListener(new TAdapter());
-        setBackground(Color.BLACK);
+        setBackground(Color.black);
         setFocusable(true);
-        
 
         setPreferredSize(new Dimension(B_WIDTH, B_HEIGHT));
         loadImages();
@@ -59,13 +59,13 @@ public class Board extends JPanel implements ActionListener {
 
     private void loadImages() {
 
-        ImageIcon iid = new ImageIcon("images//dot.png");
+        ImageIcon iid = new ImageIcon("src/resources/dot.png");
         ball = iid.getImage();
 
-        ImageIcon iia = new ImageIcon("images//apple.png");
+        ImageIcon iia = new ImageIcon("src/resources/apple.png");
         apple = iia.getImage();
 
-        ImageIcon iih = new ImageIcon("images//head.png");
+        ImageIcon iih = new ImageIcon("src/resources/head.png");
         head = iih.getImage();
     }
 
