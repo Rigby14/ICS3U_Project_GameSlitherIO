@@ -7,8 +7,11 @@ import javax.swing.border.Border;
 
 @SuppressWarnings("serial")
 public abstract class Base extends JFrame{
-	Image img = Toolkit.getDefaultToolkit().getImage("pixel-art.gif");
+	Image img = Toolkit.getDefaultToolkit().getImage("image/pixel-art.gif");
 	Image newImage = img.getScaledInstance(1500, 800, Image.SCALE_DEFAULT);
+	public int score[];
+	
+	
 	//Constructor: Defines state/behavior that all child frames will inherit
 	public Base() {
 			super("snakegame");
@@ -30,7 +33,7 @@ public abstract class Base extends JFrame{
 	 * @param font Font of button
 	 * @return Customized JButton
 	 */
-	protected JButton addCustomButton(String text, int x, int y, int width, int height,Border bd, Color fg, Color bg, Font font) {
+	public JButton addCustomButton(String text, int x, int y, int width, int height,Border bd, Color fg, Color bg, Font font) {
 		JButton button = new JButton(text);
 		button.setBounds(x, y, width, height);
 		button.setForeground(fg);

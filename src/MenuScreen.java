@@ -24,7 +24,7 @@ public class MenuScreen extends Base implements ActionListener{
 		canvas.setLayout(null);
 		this.add(canvas); //add canvas to frame
 		
-		bgGif = new ImageIcon("de5ksot-446db78d-9414-4674-9a99-4925135cfbde.gif");
+		bgGif = new ImageIcon("image/de5ksot-446db78d-9414-4674-9a99-4925135cfbde.gif");
 		labelGif = new JLabel(bgGif);
 		canvas.add(labelGif);
 		labelGif.setBounds(130, 250, 500, 400);

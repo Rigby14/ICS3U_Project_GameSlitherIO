@@ -14,6 +14,7 @@ public class DifficultyScreen extends Base implements ActionListener{
 	private JButton mediumbutton;
 	private JButton hardbutton;
 	private JButton backButton;
+	public static int tries=0;
 	
 	private Color transparentcolor = new Color(0f,0f,0f,.0f );
 	
@@ -25,9 +26,9 @@ public class DifficultyScreen extends Base implements ActionListener{
 		this.add(addCustomLabel("CHOOSE YOUR DIFFICULTY",Color.black,TITLE_FONT));
 		//this.setContentPane(new JLabel(new ImageIcon("addimage here")));//add image
 		
-		easybutton = addCustomButton("EASY",200,75, null, Color.white,Color.black,TITLE_FONT);
-		mediumbutton = addCustomButton("MEDIUM",200,75, null, Color.white,Color.black,TITLE_FONT);
-		hardbutton = addCustomButton("HARD",200,75, null, Color.white,Color.black,TITLE_FONT);
+		easybutton = addCustomButton("EASY",200,75, null, Color.white,Color.cyan,TITLE_FONT);
+		mediumbutton = addCustomButton("MEDIUM",200,75, null, Color.white,Color.cyan,TITLE_FONT);
+		hardbutton = addCustomButton("HARD",200,75, null, Color.white,Color.cyan,TITLE_FONT);
 		
 		
 		this.add(easybutton);
@@ -39,17 +40,21 @@ public class DifficultyScreen extends Base implements ActionListener{
 		
 		this.add(addCustomLabel("ICS3U Project Snake Game", transparentcolor, TITLE_FONT));
 		this.add(addCustomLabel("ICS3U Project Snake Game", transparentcolor, TITLE_FONT));
-		backButton = addCustomButton("Back to Menu",600,75, null, Color.white,Color.black,TITLE_FONT);
+		backButton = addCustomButton("Back to Menu",600,75, null, Color.white,Color.cyan,TITLE_FONT);
 		this.add(backButton);
 		backButton.addActionListener(this);
 		
 		this.setVisible(true);
+	}
+	public static int getTries() {
+		return tries;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() ==easybutton) {
 			this.dispose();
+			tries++;
 			new EasyStage();
 		}
 		else if (e.getSource()==mediumbutton) {
@@ -58,11 +63,13 @@ public class DifficultyScreen extends Base implements ActionListener{
 		}
 		else if (e.getSource()== hardbutton) {
 			this.dispose();
+			tries++;
 			new HardStage();
 		}
 		//back to menu
 		else if (e.getSource() == backButton) {
 			this.dispose();
+			tries++;
 			new MenuScreen();
 		}
 	}

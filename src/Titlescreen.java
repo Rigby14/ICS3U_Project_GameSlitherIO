@@ -39,7 +39,7 @@ public class Titlescreen extends Base implements ActionListener{
 		//add introduction about project
 		this.add(addCustomLabel("ICS3U Project Snake Game", Color.black, TITLE_FONT));
 		this.add(addCustomLabel("ICS3U Project Snake Game", transparentcolor, TITLE_FONT));
-		this.add(addCustomLabel("-------------------------------------", Color.black, TITLE_FONT));
+		this.add(addCustomLabel("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~", Color.black, TITLE_FONT));
 		this.add(addCustomLabel("ICS3U Project Snake Game", transparentcolor, TITLE_FONT));
 		this.add(addCustomLabel("Orjouan and Rigby", Color.black, TITLE_FONT));
 		for (int i =0;i<20;i++) {

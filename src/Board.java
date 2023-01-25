@@ -10,23 +10,29 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import javax.swing.border.Border;
 
 public class Board extends JPanel implements ActionListener {
 
 	//board width
-    private final int B_WIDTH = 300;
+    private final int B_WIDTH = 1500;
     //board height
-    private final int B_HEIGHT = 300;
+    private final int B_HEIGHT = 800;
     //1 dot size (1 apple = 1 dot; 1 snake body =1 dot)
     private final int DOT_SIZE = 10;
     //all possible dot in the baord
-    private final int ALL_DOTS = 900;
+    private final int ALL_DOTS = 12000;
     //random position of the apple
     private final int RAND_POS = 29;
     //game speed
     private final int DELAY;
+    //count score
+    private static int finalScore=0;
+    private static int highScore;
+    
 
     //two arrays store the x and y coordinates of all joints of a snake
     private final int x[] = new int[ALL_DOTS];
@@ -35,6 +41,7 @@ public class Board extends JPanel implements ActionListener {
     private int dots;
     private int apple_x;
     private int apple_y;
+    public static boolean over=false;
 
     private boolean leftDirection = false;
     private boolean rightDirection = true;
@@ -46,11 +53,12 @@ public class Board extends JPanel implements ActionListener {
     private Image ball;
     private Image apple;
     private Image head;
+    private JButton jbtMenu; //button to return to menu
 
     public Board(int speed) {
-        
-        this.DELAY = speed;
+    	this.DELAY=speed;
 		initBoard();
+		finalScore=0;
     }
     
     private void initBoard() {
@@ -66,13 +74,13 @@ public class Board extends JPanel implements ActionListener {
 
     private void loadImages() {
 
-        ImageIcon iid = new ImageIcon("src/resources/dot.png");
+        ImageIcon iid = new ImageIcon("image/dot.png");
         ball = iid.getImage();
 
-        ImageIcon iia = new ImageIcon("src/resources/apple.png");
+        ImageIcon iia = new ImageIcon("image/apple.png");
         apple = iia.getImage();
 
-        ImageIcon iih = new ImageIcon("src/resources/head.png");
+        ImageIcon iih = new ImageIcon("image/head.png");
         head = iih.getImage();
     }
 
@@ -117,6 +125,13 @@ public class Board extends JPanel implements ActionListener {
         } else {
 
             gameOver(g);
+          //add a Menu button
+            this.add(jbtMenu = addCustomButton("Back To Menu", 1000, 650, 200, 80, null,Color.white, Color.cyan, new Font("Comic Sans MS", Font.PLAIN, 25)));
+            //register Action Listener for menu button
+            jbtMenu.addActionListener(this);
+            if(highScore<finalScore) {
+            	highScore=finalScore;
+            }
         }        
     }
     
@@ -126,7 +141,6 @@ public class Board extends JPanel implements ActionListener {
     }
 
     private void gameOver(Graphics g) {
-        
         String msg = "Game Over";
         Font small = new Font("Helvetica", Font.BOLD, 14);
         FontMetrics metr = getFontMetrics(small);
@@ -134,18 +148,32 @@ public class Board extends JPanel implements ActionListener {
         g.setColor(Color.white);
         g.setFont(small);
         g.drawString(msg, (B_WIDTH - metr.stringWidth(msg)) / 2, B_HEIGHT / 2);
-    }
+        
+        
+    }//game over 
 
+    public JButton addCustomButton(String text, int x, int y, int width, int height,Border bd, Color fg, Color bg, Font font) {
+		JButton button = new JButton(text);
+		button.setBounds(x, y, width, height);
+		button.setForeground(fg);
+		button.setBackground(bg);
+		button.setFont(font);
+		button.setFocusable(false);
+		button.setBorder(bd);
+		return button;
+	}//end of addCustomButton method
     private void checkApple() {
 
         if ((x[0] == apple_x) && (y[0] == apple_y)) {
 
             dots++;
+            finalScore++;
             locateApple();
         }
     }
-
-    //this method 
+    
+    
+    
     private void move() {
 
         for (int z = dots; z > 0; z--) {
@@ -212,16 +240,23 @@ public class Board extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
+    	if (e.getSource()==jbtMenu) {
+			new MenuScreen(); //create new instance of MenuScreen with title
+		}
         if (inGame) {
 
             checkApple();
             checkCollision();
             move();
+            
         }
 
         repaint();
     }
 
+    public static int getScore() {
+    	return highScore;
+    }
     
     //input key to perform motion
     private class TAdapter extends KeyAdapter {
