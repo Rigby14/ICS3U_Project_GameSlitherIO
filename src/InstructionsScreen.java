@@ -11,7 +11,7 @@ public class InstructionsScreen extends Base implements ActionListener{
 	private JTable table;
 	private Object[][] data= {{1,Board.getScore()}};
 	private String[] columm={" ","High Score"};
-	
+
 	public InstructionsScreen() {
 		super();
 		bg = new ImageIcon("image/bgimma.png"); //set background image
@@ -26,7 +26,7 @@ public class InstructionsScreen extends Base implements ActionListener{
 		//add canvas to JFrame
 		this.add(canvas);
 	}//end of InstructionsScreen contructor
-	
+
 	/**
 	 * This method is implemented from the ActionListener interface. Each action performed leads to a different scenario.
 	 */
@@ -36,7 +36,7 @@ public class InstructionsScreen extends Base implements ActionListener{
 			this.dispose();
 		}
 	}//end of actionPerformed method
-	
+
 	/*
 	 * This class is a canvas that draws the background image. All components are added to this Panel, then the
 	 * PaintPanel is added to the JFrame.

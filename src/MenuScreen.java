@@ -12,38 +12,38 @@ public class MenuScreen extends Base implements ActionListener{
 	private JLabel heading, labelGif; //the heading label of the Main Menu and the label that will hold bgGif
 	private final Color MENU_COLOR_FG = Color.white, MENU_COLOR_BG = Color.cyan; //constant colors of menu button foreground and background respectively
 	private final Font MENU_FONT = new Font("Comic Sans MS", Font.PLAIN, 25); //constant font of menu buttons
-	
+
 	//Constructor for MenuScreen
 	MenuScreen(){
 		super(); //calls ScreenFrame constructor creating a new ScreenFrame
-		
+
 		//set a background image
 		bg = new ImageIcon(newImage);
 		//instantiate canvas and set null layout manager of canvas so we can manually place components
 		canvas = new PaintPanel();
 		canvas.setLayout(null);
 		this.add(canvas); //add canvas to frame
-		
+
 		bgGif = new ImageIcon("image/de5ksot-446db78d-9414-4674-9a99-4925135cfbde.gif");
 		labelGif = new JLabel(bgGif);
 		canvas.add(labelGif);
 		labelGif.setBounds(130, 250, 500, 400);
-		
+
 		//add a custom label for the heading
 		canvas.add(heading = addCustomLabel("Snake 3imu14t0R", Color.cyan, new Font("Comic Sans MS", Font.BOLD, 60)));
 		heading.setBounds(50, 25, 900, 150); //set bounds for the heading on the canvas
-		
+
 		//add the Play button
 		jbtPlay = addCustomButton("Play", 750, 180, 200, 80,null, MENU_COLOR_FG, MENU_COLOR_BG, MENU_FONT);
 		canvas.add(jbtPlay); //add to canvas
 		jbtPlay.addActionListener(this); //register action listener
-		
-		
+
+
 		//add the Instructions button
 		jbtInstructions = addCustomButton("Instructions", 750, 300, 200, 80,null, MENU_COLOR_FG, MENU_COLOR_BG, MENU_FONT);
 		canvas.add(jbtInstructions); //add to canvas
 		jbtInstructions.addActionListener(this); //register action listener
-		
+
 
 		//add the Scores button
 		jbtScores = addCustomButton("Scores", 750, 420, 200, 80,null, MENU_COLOR_FG, MENU_COLOR_BG, MENU_FONT);
@@ -56,7 +56,7 @@ public class MenuScreen extends Base implements ActionListener{
 		canvas.add(jbtExit); //add to canvas
 		jbtExit.addActionListener(this); //register action listener
 
-		
+
 	}//end of MenuScreen constructor
 
 	/**
@@ -86,7 +86,7 @@ public class MenuScreen extends Base implements ActionListener{
 			System.exit(0);
 		}
 	}//end of actionPerformed method
-	
+
 	/*
 	 * This class is a canvas that draws the background image. All components are added to this Panel, then the
 	 * PaintPanel is added to the JFrame.

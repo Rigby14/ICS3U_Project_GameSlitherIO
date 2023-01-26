@@ -10,17 +10,17 @@ public abstract class Base extends JFrame{
 	Image img = Toolkit.getDefaultToolkit().getImage("image/pixel-art.gif");
 	Image newImage = img.getScaledInstance(1500, 800, Image.SCALE_DEFAULT);
 	public int score[];
-	
-	
+
+
 	//Constructor: Defines state/behavior that all child frames will inherit
 	public Base() {
-			super("snakegame");
-			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			this.setSize(1500, 800); //setting size of all game screens
-			this.setResizable(false); //user cannot resize frame
-			this.setVisible(true);
+		super("snakegame");
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setSize(1500, 800); //setting size of all game screens
+		this.setResizable(false); //user cannot resize frame
+		this.setVisible(true);
 	}//end of ScreenFrame constructor
-	
+
 	/**
 	 * This method creates a custom JButton
 	 * @param text Text to be put on button
@@ -43,7 +43,7 @@ public abstract class Base extends JFrame{
 		button.setBorder(bd);
 		return button;
 	}//end of addCustomButton method
-	
+
 	/**
 	 * This method creates a custom JButton without x and y coordinates in case the JButton is being 
 	 * placed with a layout manager
@@ -65,7 +65,7 @@ public abstract class Base extends JFrame{
 		button.setFocusable(false);
 		return button;
 	}//end of addCustomButton method
-	
+
 	/**
 	 * This method creates a custom JLabel
 	 * @param text Text to be put on label
@@ -79,5 +79,5 @@ public abstract class Base extends JFrame{
 		label.setFont(font);
 		return label;
 	}//end of addCustomLabel method
-	
+
 }

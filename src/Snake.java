@@ -18,78 +18,56 @@ public class Snake extends Base implements ActionListener{
 
 	private final Font TITLE_FONT = new Font("Calibri", Font.BOLD, 40);
 	private Color transparentcolor = new Color(0f,0f,0f,.0f );
-	
+
 	private JButton pauseButton;
-	private JButton remsumeButton;
-	private JButton menuButton;
-	private JButton exitButton;
-	private volatile boolean isPaused = false;
-	
+
 	private int score;
-	
 	private int gameSpeed;
-    public Snake(int speed) {
-        this.gameSpeed = speed;
-        initUI();
-        try {
-            if (isPaused) {
-                synchronized (this) {
-                    while (isPaused) {
-                        wait();
-                    }
-                }
-            }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        
-    }
-    
-    public synchronized void resumeGame() {
-        isPaused = false;
-        notify();
-    }
-    
-    private void initUI() {
 
-    	score = Board.getScore();
-    	
-        pauseButton = addCustomButton("||",50,50,40,40,null,Color.white,Color.cyan,TITLE_FONT);
-        pauseButton.setPreferredSize(new Dimension(50, 20));
-        pauseButton.addActionListener(this);
+	public Snake(int speed) {
+		this.gameSpeed = speed;//adjusting game speed
+		initUI();
 
-        
-    	this.add(new Board(gameSpeed),BorderLayout.CENTER);
-    	
+	}
+
+	private void initUI() {
+
+		score = Board.getScore();
+
+		pauseButton = addCustomButton("||",50,50,40,40,null,Color.white,Color.cyan,TITLE_FONT);
+		pauseButton.setPreferredSize(new Dimension(50, 20));
+		pauseButton.addActionListener(this);
 
 
-    	this. setResizable(false);
-    	this. pack();
+		this.add(new Board(gameSpeed),BorderLayout.CENTER);//add game
+		this. setResizable(false);
+		this. pack();
+		this.setTitle("Snake");
+		this.setLocationRelativeTo(null);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-    	this.setTitle("Snake");
-    	this.setLocationRelativeTo(null);
-    	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    	
-    	//add pause button and option after press pause
-    	JPanel panel = new JPanel();
-    	panel.setLayout(new GridLayout(20,0));
-    	panel.add(pauseButton);
-    	panel.setBackground(Color.WHITE);
-    	panel.add(addCustomLabel("S", Color.black, TITLE_FONT));
-    	panel.add(addCustomLabel("I", transparentcolor, TITLE_FONT));//add balnk
-    	panel.add(addCustomLabel("N", Color.black, TITLE_FONT));
-    	panel.add(addCustomLabel("I", transparentcolor, TITLE_FONT));//add blank
-    	panel.add(addCustomLabel("A", Color.black, TITLE_FONT));
-    	panel.add(addCustomLabel("I", transparentcolor, TITLE_FONT));//add blank
-    	panel.add(addCustomLabel("K", Color.black, TITLE_FONT));
-    	panel.add(addCustomLabel("I", transparentcolor, TITLE_FONT));//add blank
-    	panel.add(addCustomLabel("E", Color.black, TITLE_FONT));
-    	panel.add(addCustomLabel("I", transparentcolor, TITLE_FONT));//add blank
-    	panel.add(addCustomLabel("High Score"+score, Color.black, TITLE_FONT));
-    	this.add(panel, BorderLayout.WEST);
-    	
+		//add pause button and go to difficulty screen
+		JPanel panel = new JPanel();
+		panel.setLayout(new GridLayout(20,0));
+		panel.add(pauseButton);
+		panel.setBackground(Color.WHITE);
+		//ingmae thumbnail
+		panel.add(addCustomLabel("S", Color.black, TITLE_FONT));
+		panel.add(addCustomLabel("I", transparentcolor, TITLE_FONT));//add balnk
+		panel.add(addCustomLabel("N", Color.black, TITLE_FONT));
+		panel.add(addCustomLabel("I", transparentcolor, TITLE_FONT));//add blank
+		panel.add(addCustomLabel("A", Color.black, TITLE_FONT));
+		panel.add(addCustomLabel("I", transparentcolor, TITLE_FONT));//add blank
+		panel.add(addCustomLabel("K", Color.black, TITLE_FONT));
+		panel.add(addCustomLabel("I", transparentcolor, TITLE_FONT));//add blank
+		panel.add(addCustomLabel("E", Color.black, TITLE_FONT));
+		panel.add(addCustomLabel("I", transparentcolor, TITLE_FONT));//add blank
+		//highscore display
+		panel.add(addCustomLabel("High Score"+score, Color.black, TITLE_FONT));
+		this.add(panel, BorderLayout.WEST);
 
-    }
+
+	}
 
 
 	@Override
@@ -99,8 +77,8 @@ public class Snake extends Base implements ActionListener{
 			this.dispose(); //get rid of current frame
 			new DifficultyScreen(); //create new instance of MenuScreen with title
 		}
-		
-		
+
+
 	}
-    
+
 }

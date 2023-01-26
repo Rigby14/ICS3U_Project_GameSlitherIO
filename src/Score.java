@@ -18,15 +18,15 @@ public class Score extends Base implements ActionListener{
 	private int recentTries;
 	private boolean triesIncreased;
 	private int highscore;
-	
+
 	public Score() {
 		super();
-		
+
 		//add a Menu button
 		this.add(jbtMenu = addCustomButton("Back To Menu", 1000, 650, 200, 80, null,Color.white, Color.cyan, new Font("Comic Sans MS", Font.PLAIN, 25)));
 		//register Action Listener for menu button
 		jbtMenu.addActionListener(this);
-		
+
 		if (recentTries!=DifficultyScreen.getTries())
 		{
 			recentTries = DifficultyScreen.getTries();
@@ -38,18 +38,18 @@ public class Score extends Base implements ActionListener{
 			data[row][cols]=Board.getScore();
 			row++;
 		}//get tries and score to add to table
-		
+
+
+		//add table display highscore
 		table = new JTable(data,columm);
 		table.setBounds(30, 40, 200, 300);
 		JScrollPane sp = new JScrollPane(table);
-		
-		
-        
-		//add canvas to JFrame
+
+		//add table to JFrame and set to visible after adding every components
 		this.add(sp);
 		this.setVisible(true);
 	}
-	
+
 	/**
 	 * This method is implemented from the ActionListener interface. Each action performed leads to a different scenario.
 	 */

@@ -25,7 +25,7 @@ public class Titlescreen extends Base implements ActionListener{
 	private Color transparentcolor = new Color(0f,0f,0f,.0f );
 	private Color transparentRed = new Color(0f,0f,.1f,.5f);
 	Border border = BorderFactory.createLineBorder(transparentRed, 5);
-	
+
 
 
 	public Titlescreen() throws IOException
@@ -35,7 +35,7 @@ public class Titlescreen extends Base implements ActionListener{
 		this.setContentPane(new JLabel(new ImageIcon(newImage)));
 		JPanel[][] panelHolder = new JPanel[8][15];
 		this.setLayout(new GridLayout(15,16));
-	
+
 		//add introduction about project
 		this.add(addCustomLabel("ICS3U Project Snake Game", Color.black, TITLE_FONT));
 		this.add(addCustomLabel("ICS3U Project Snake Game", transparentcolor, TITLE_FONT));
@@ -45,12 +45,12 @@ public class Titlescreen extends Base implements ActionListener{
 		for (int i =0;i<20;i++) {
 			this.add(addCustomLabel("", Color.black, TITLE_FONT));
 		}
-		
+
 		jbtnext = addCustomButton("Next",200, 75,null, Color.white, Color.cyan, new Font("Comic Sans MS", Font.BOLD, 20));
 		jbtnext.addActionListener(this); //register action listener so actions can be performed when pressed
 		this.add(jbtnext); //add Next button to the frame
 
-		//Set Visible again because FlowLayout needs it to be set last
+		//set visible after adding all components
 		this.setVisible(true);
 
 
@@ -63,8 +63,8 @@ public class Titlescreen extends Base implements ActionListener{
 			this.dispose(); //get rid of current frame
 			new MenuScreen(); //create new instance of MenuScreen with title
 		}
-		
+
 	}
-	
+
 
 }

@@ -8,10 +8,11 @@ public class MediumStage {
 		super();
 		newGame();
 	}
+	//this medthod create new game
 	public void newGame() {
 		EventQueue.invokeLater(() -> {
-            JFrame ex = new Snake(110);
-            ex.setVisible(true);
-        });
+			JFrame ex = new Snake(110);
+			ex.setVisible(true);
+		});
 	}
 }
